@@ -1,0 +1,8 @@
+#!/bin/bash
+exec 2>&1
+WHICH_HAPROXY=$(which haproxy)
+
+mkdir -p /var/state/haproxy
+mkdir -p /var/run/haproxy
+
+exec $WHICH_HAPROXY -W -f /marathon-lb/haproxy.cfg -x /var/run/haproxy/socket
